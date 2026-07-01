@@ -3,8 +3,41 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Onepage | Text in, Resume out</title>
-<meta name="description" content="Type your resume as plain text (or paste a messy one) and get a polished, print-perfect PDF in seven templates. No signup, nothing uploaded, and it all runs in your browser. Share a resume with a single link." />
+<title>PlainResume — Free Resume Builder, No Signup | Plain Text to PDF</title>
+<meta name="description" content="PlainResume is a free, open-source resume builder with no signup and no upload. Type or paste plain text and get a polished, ATS-friendly, print-ready PDF in seven templates. Everything runs in your browser — your data never leaves the page." />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+<meta name="referrer" content="no-referrer" />
+<meta name="color-scheme" content="dark light" />
+<meta name="theme-color" content="#090d14" />
+<link rel="canonical" href="https://jc-965.github.io/PlainResume/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="PlainResume" />
+<meta property="og:title" content="PlainResume — Free Resume Builder, No Signup" />
+<meta property="og:description" content="Type or paste plain text, get a polished one-page resume PDF. Free, open source, no account — it all runs in your browser." />
+<meta property="og:url" content="https://jc-965.github.io/PlainResume/" />
+<meta property="og:image" content="https://github.com/Jc-965/PlainResume/releases/download/v1.0.0/onepage-hero.png" />
+<meta property="og:image:alt" content="The PlainResume editor: plain text on the left, a live formatted resume on the right" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="PlainResume — Free Resume Builder, No Signup" />
+<meta name="twitter:description" content="Type or paste plain text, get a polished one-page resume PDF. Free, open source, no account — it all runs in your browser." />
+<meta name="twitter:image" content="https://github.com/Jc-965/PlainResume/releases/download/v1.0.0/onepage-hero.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PlainResume",
+  "url": "https://jc-965.github.io/PlainResume/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "A free, open-source resume builder with no signup. Type or paste plain text and get a polished, ATS-friendly, print-ready PDF resume in seven templates, entirely in your browser.",
+  "featureList": "Live preview, seven resume templates, messy paste cleanup, ATS-friendly PDF export, shareable links, local autosave, no account required",
+  "screenshot": "https://github.com/Jc-965/PlainResume/releases/download/v1.0.0/onepage-hero.png",
+  "license": "https://opensource.org/license/mit",
+  "sameAs": "https://github.com/Jc-965/PlainResume"
+}
+</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235563ff'/%3E%3Crect x='8.5' y='6.5' width='15' height='19' rx='2.5' fill='white'/%3E%3Crect x='11' y='10' width='10' height='1.8' rx='.9' fill='%235563ff'/%3E%3Crect x='11' y='13.6' width='10' height='1.6' rx='.8' fill='%23c7ccff'/%3E%3Crect x='11' y='17.2' width='10' height='1.6' rx='.8' fill='%23c7ccff'/%3E%3Crect x='11' y='20.8' width='6.5' height='1.6' rx='.8' fill='%23c7ccff'/%3E%3C/svg%3E" />
 <style>
   :root {
@@ -109,6 +142,19 @@
     content: ""; position: absolute; right: 9px; width: 6px; height: 6px;
     border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(109,124,255,.16);
   }
+  .select-option.with-thumb { justify-content: flex-start; gap: 10px; padding: 8px 26px 8px 8px; white-space: normal; }
+  .select-option.with-thumb .thumb-label { flex: 1; }
+  .tpl-thumb {
+    flex: none; width: 84px; height: 108px; overflow: hidden; position: relative;
+    border-radius: 5px; background: #fff; border: 1px solid rgba(255,255,255,.16);
+    box-shadow: 0 2px 10px rgba(0,0,0,.4);
+  }
+  .tpl-thumb .paper {
+    position: absolute; left: 0; top: 0; margin: 0; width: 8.5in; min-height: 11in;
+    transform: scale(.1029); transform-origin: top left; pointer-events: none;
+  }
+  html[data-theme="light"] .tpl-thumb { border-color: rgba(15,23,42,.18); box-shadow: 0 2px 10px rgba(15,23,42,.2); }
+  .custom-select.tpl .select-menu { max-height: min(520px, calc(100vh - 96px)); }
   .dots { display: flex; gap: 6px; padding: 0 2px; }
   .dot { width: 18px; height: 18px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; padding: 0; transition: .15s; }
   .dot:hover { transform: scale(1.12); }
@@ -335,6 +381,64 @@
   .help-body code { background: rgba(255,255,255,.09); padding: 1px 5px; border-radius: 5px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: #e7ebf5; }
   .help-example { background: #0c0f16; border: 1px solid rgba(255,255,255,.09); border-radius: 10px; padding: 12px 14px; margin: 4px 0 2px; white-space: pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; line-height: 1.5; color: #d7deea; }
   .help-foot { color: var(--muted); font-size: 12.5px; margin-top: 12px; }
+
+  /* ===================== theme toggle + light theme ===================== */
+  #themeToggle { width: 36px; padding: 0; justify-content: center; }
+  #themeToggle .icon-moon { display: none; }
+  html[data-theme="light"] #themeToggle .icon-sun { display: none; }
+  html[data-theme="light"] #themeToggle .icon-moon { display: inline; }
+  html[data-theme="light"] {
+    --bg: #eef1f6; --bg2: #e4e9f1; --panel: #ffffff; --ink: #17202e; --muted: #5c6b80;
+    --line: #d7dee9; --line2: #b6c1d2; --accent: #5563ff; --accent2: #eef1f8;
+  }
+  html[data-theme="light"] ::selection { background: rgba(85,99,255,.18); }
+  html[data-theme="light"] ::-webkit-scrollbar-thumb:hover { background: #94a3b8; background-clip: padding-box; }
+  html[data-theme="light"] .bar {
+    background: linear-gradient(180deg, rgba(255,255,255,.97), rgba(241,244,250,.97));
+    box-shadow: 0 10px 26px -22px rgba(15,23,42,.5), 0 1px 0 rgba(255,255,255,.7) inset;
+  }
+  html[data-theme="light"] .brand .name small { color: #64748b; }
+  html[data-theme="light"] select:hover, html[data-theme="light"] button:hover { border-color: #8fa0b8; color: #0f1726; background: #e7ecf4; }
+  html[data-theme="light"] button.primary { color: #fff; box-shadow: 0 2px 14px -3px rgba(85,99,255,.45); }
+  html[data-theme="light"] button.primary:hover { background: var(--accent); border-color: var(--accent); color: #fff; filter: brightness(1.06); }
+  html[data-theme="light"] #share { color: #1c2a44; background: #e7ecf5; border-color: #b6c1d2; }
+  html[data-theme="light"] #share:hover { background: #dde4f0; border-color: #93a3bb; }
+  html[data-theme="light"] #share svg { color: #4353d9; }
+  html[data-theme="light"] button.info-button { color: #1c2a44; background: #eef1f8; border-color: #b6c1d2; }
+  html[data-theme="light"] button.info-button:hover { background: #dde4f0; border-color: #93a3bb; }
+  html[data-theme="light"] button.info-button svg { color: #4353d9; }
+  html[data-theme="light"] .select-button:hover .select-chev, html[data-theme="light"] .custom-select.open .select-chev { color: #17202e; }
+  html[data-theme="light"] .select-menu { background: #ffffff; border-color: #c3cddc; box-shadow: 0 20px 46px -24px rgba(15,23,42,.35), 0 0 0 1px rgba(15,23,42,.04); }
+  html[data-theme="light"] .select-group-label { color: #64748b; }
+  html[data-theme="light"] .select-option { color: #1f2937; }
+  html[data-theme="light"] .select-option:hover, html[data-theme="light"] .select-option.active { background: #e9edf6; color: #0b1220; }
+  html[data-theme="light"] .select-option[aria-selected="true"] { color: #0b1220; }
+  html[data-theme="light"] .main, html[data-theme="light"] .splitter { background: #e4e9f1; }
+  html[data-theme="light"] .pane { box-shadow: 0 16px 40px -34px rgba(15,23,42,.45); }
+  html[data-theme="light"] .pane-head { background: linear-gradient(180deg, #fbfcfe, #f2f5fa); }
+  html[data-theme="light"] .tool-value { color: #47546a; }
+  html[data-theme="light"] .editor-wrap { background: #ffffff; }
+  html[data-theme="light"] .editor-highlights { color: #24303f; }
+  html[data-theme="light"] .editor-highlights .tok-section { color: #3742c0; }
+  html[data-theme="light"] .editor-highlights .tok-contact { color: #0e7f6b; }
+  html[data-theme="light"] .editor-highlights .tok-entry { color: #8a5a05; }
+  html[data-theme="light"] .editor-highlights .tok-date { color: #64748b; }
+  html[data-theme="light"] .editor-highlights .tok-degree { color: #b23472; }
+  html[data-theme="light"] .editor-highlights .tok-bullet { color: #333e4e; }
+  html[data-theme="light"] .editor-highlights .tok-label { color: #135bc4; }
+  html[data-theme="light"] textarea { caret-color: #101828; color: rgba(0,0,0,.01); -webkit-text-fill-color: rgba(0,0,0,.01); }
+  html[data-theme="light"] .preview { background: radial-gradient(130% 90% at 50% -10%, #dfe6f0, #c8d2e0); }
+  html[data-theme="light"] .page-sheet { box-shadow: 0 1px 2px rgba(15,23,42,.18), 0 12px 34px rgba(15,23,42,.22); }
+  html[data-theme="light"] .toast { background: #17202e; }
+  html[data-theme="light"] .help-backdrop { background: rgba(15,23,42,.4); }
+  html[data-theme="light"] .help-card { border-color: #c3cddc; background: linear-gradient(180deg, #ffffff, #f4f6fb); box-shadow: 0 24px 70px -28px rgba(15,23,42,.5); }
+  html[data-theme="light"] .help-head { border-bottom-color: rgba(15,23,42,.08); }
+  html[data-theme="light"] .help-close:hover { background: rgba(15,23,42,.06); }
+  html[data-theme="light"] .help-body { color: #3a4657; }
+  html[data-theme="light"] .help-body h3 { color: #4353d9; }
+  html[data-theme="light"] .help-body code { background: rgba(15,23,42,.07); color: #1f2937; }
+  html[data-theme="light"] .help-example { background: #f4f6fa; border-color: rgba(15,23,42,.12); color: #2b3648; }
+
   @media (max-width: 820px) {
     body { overflow: auto; }
     .main { grid-template-columns: 1fr; height: auto; padding: 8px; gap: 8px; }
@@ -374,7 +478,7 @@
         <defs><linearGradient id="opg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
           <stop stop-color="#8390ff"/><stop offset="1" stop-color="#5563ff"/></linearGradient></defs>
       </svg></span>
-      <span class="name">Onepage <small>plain text in, clean resume out</small></span>
+      <span class="name">PlainResume <small>plain text in, clean resume out</small></span>
     </div>
     <div class="spacer"></div>
     <div class="group">
@@ -395,13 +499,14 @@
     </div>
     <div class="sep"></div>
     <div class="group">
+      <button id="themeToggle" type="button" aria-label="Switch to light theme" title="Switch to light theme"><svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
       <select id="sample" title="Load a sample resume">
         <option value="" selected disabled hidden>Load sample…</option>
         <option value="clean">Polished example</option>
         <option value="messy">Messy paste (no formatting)</option>
       </select>
       <button id="share" aria-label="Copy a shareable link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Copy link</button>
-      <button class="primary" id="export" aria-label="Export to PDF"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export PDF</button>
+      <button class="primary" id="export" aria-label="Download as PDF" title="Opens your browser's print dialog — choose 'Save as PDF' as the destination"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download PDF</button>
       <button class="info-button" id="infoBtn" type="button" aria-label="How to write your resume" title="How to write your resume"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>Info</button>
     </div>
   </div>
@@ -460,7 +565,7 @@
         <button class="help-close" id="helpClose" type="button" aria-label="Close">&times;</button>
       </div>
       <div class="help-body">
-        <p>Onepage formats plain text as you type. There is no syntax to learn, and messy spacing is fine. These light conventions just give the parser a clearer signal.</p>
+        <p>PlainResume formats plain text as you type. There is no syntax to learn, and messy spacing is fine. These light conventions just give the parser a clearer signal.</p>
 
         <h3>Header</h3>
         <ul>
@@ -489,7 +594,7 @@
 
         <h3>Dates and locations</h3>
         <ul>
-          <li>Write dates any way you like, such as <code>May 2025 - Aug 2025</code> or <code>2024 - Present</code>. Onepage moves them into a clean right aligned column for you.</li>
+          <li>Write dates any way you like, such as <code>May 2025 - Aug 2025</code> or <code>2024 - Present</code>. PlainResume moves them into a clean right aligned column for you.</li>
         </ul>
 
         <h3>Example</h3>
@@ -1086,7 +1191,7 @@ function setResumeZoom(v, persist = true) {
   resumeZoom = clamp(Number(v) || 1, .45, 1.7);
   document.documentElement.style.setProperty("--resume-zoom", resumeZoom);
   if (zoomLabel) zoomLabel.textContent = Math.round(resumeZoom * 100) + "%";
-  if (persist) { try { localStorage.setItem("onepage_zoom", String(resumeZoom)); } catch (e) {} }
+  if (persist) { try { localStorage.setItem("plainresume_zoom", String(resumeZoom)); } catch (e) {} }
   schedulePaperLayout();
 }
 function setResumeZoomAt(v, clientX, clientY) {
@@ -1110,13 +1215,13 @@ function fitResume() {
 function setEditorFontSize(v, persist = true) {
   editorFontSize = clamp(Number(v) || 15, 12, 22);
   document.documentElement.style.setProperty("--editor-font", editorFontSize + "px");
-  if (persist) { try { localStorage.setItem("onepage_editor_font", String(editorFontSize)); } catch (e) {} }
+  if (persist) { try { localStorage.setItem("plainresume_editor_font", String(editorFontSize)); } catch (e) {} }
   updateHighlights();
 }
 function setEditorWidthPercent(pct, persist = true) {
   const v = clamp(Number(pct) || 44, 30, 68);
   document.documentElement.style.setProperty("--editor-w", v + "%");
-  if (persist) { try { localStorage.setItem("onepage_editor_w", String(v)); } catch (e) {} }
+  if (persist) { try { localStorage.setItem("plainresume_editor_w", String(v)); } catch (e) {} }
   schedulePaperLayout();
 }
 
@@ -1167,14 +1272,29 @@ function enhanceSelect(select, opts = {}) {
   btn.setAttribute("aria-controls", menu.id);
   wrap.append(btn, menu);
 
-  let nodes = [], active = -1;
+  let nodes = [], active = -1, thumbHTML = "";
   const addOption = opt => {
     if (opt.hidden) return;
     const item = document.createElement("div");
     item.className = "select-option";
     item.id = select.id + "-opt-" + nodes.length;
     item.dataset.value = opt.value;
-    item.textContent = opt.textContent;
+    if (opts.thumbnails && thumbHTML) {
+      item.classList.add("with-thumb");
+      const th = document.createElement("div");
+      th.className = "tpl-thumb";
+      const mini = document.createElement("div");
+      mini.className = "paper " + opt.value;
+      if (curFont) mini.style.fontFamily = curFont;
+      mini.innerHTML = thumbHTML;
+      th.appendChild(mini);
+      const lab = document.createElement("span");
+      lab.className = "thumb-label";
+      lab.textContent = opt.textContent;
+      item.append(th, lab);
+    } else {
+      item.textContent = opt.textContent;
+    }
     item.setAttribute("role", "option");
     item.setAttribute("aria-selected", opt.value === select.value ? "true" : "false");
     if (opt.style.fontFamily) item.style.fontFamily = opt.style.fontFamily;
@@ -1187,6 +1307,7 @@ function enhanceSelect(select, opts = {}) {
   const rebuild = () => {
     menu.innerHTML = "";
     nodes = [];
+    thumbHTML = opts.thumbnails ? renderHTML(parse(src.value)) : "";
     Array.from(select.children).forEach(child => {
       if (child.tagName === "OPTGROUP") {
         const label = document.createElement("div");
@@ -1289,7 +1410,7 @@ function rerender(opts = {}) {
     lastCursorLine = currentSourceLine();
   }
   if (countEl) { const w = (src.value.match(/\S+/g) || []).length; countEl.textContent = w + (w === 1 ? " word" : " words"); }
-  try { localStorage.setItem("onepage_text", src.value); } catch (e) {}
+  try { localStorage.setItem("plainresume_text", src.value); } catch (e) {}
 }
 function setTemplate(tpl) {
   if (!TEMPLATES.includes(tpl)) tpl = "modern";
@@ -1298,7 +1419,7 @@ function setTemplate(tpl) {
   tplSel.value = tpl;
   syncCustomSelect(tplSel);
   schedulePaperLayout();
-  try { localStorage.setItem("onepage_tpl", tpl); } catch (e) {}
+  try { localStorage.setItem("plainresume_tpl", tpl); } catch (e) {}
 }
 function setAccent(c) {
   curAccent = c;
@@ -1306,7 +1427,7 @@ function setAccent(c) {
   document.querySelectorAll("#accents .dot").forEach(d => d.classList.toggle("on", d.dataset.c === c));
   const ap = document.getElementById("accentPick");
   if (ap && /^#[0-9a-f]{6}$/i.test(c)) ap.value = c;
-  try { localStorage.setItem("onepage_accent", c); } catch (e) {}
+  try { localStorage.setItem("plainresume_accent", c); } catch (e) {}
 }
 function setFont(stack) {
   curFont = stack || "";
@@ -1315,7 +1436,7 @@ function setFont(stack) {
   fontSel.style.fontFamily = curFont; // preview the chosen face in the control itself
   syncCustomSelect(fontSel);
   schedulePaperLayout();
-  try { localStorage.setItem("onepage_font", curFont); } catch (e) {}
+  try { localStorage.setItem("plainresume_font", curFont); } catch (e) {}
 }
 
 (function buildFontMenu() {
@@ -1343,6 +1464,22 @@ ACCENTS.forEach(c => {
   accentsEl.appendChild(d);
 });
 document.getElementById("accentPick").addEventListener("input", e => setAccent(e.target.value));
+function setTheme(t, persist = true) {
+  const theme = t === "light" ? "light" : "dark";
+  document.documentElement.dataset.theme = theme;
+  const tt = document.getElementById("themeToggle");
+  if (tt) {
+    const next = theme === "dark" ? "light" : "dark";
+    tt.setAttribute("aria-label", "Switch to " + next + " theme");
+    tt.title = "Switch to " + next + " theme";
+  }
+  const tc = document.querySelector('meta[name="theme-color"]');
+  if (tc) tc.content = theme === "dark" ? "#090d14" : "#eef1f6";
+  if (persist) { try { localStorage.setItem("plainresume_theme", theme); } catch (e) {} }
+}
+document.getElementById("themeToggle").addEventListener("click", () => {
+  setTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light");
+});
 tplSel.addEventListener("change", () => setTemplate(tplSel.value));
 src.addEventListener("input", () => rerender());
 src.addEventListener("scroll", syncHighlightScroll);
@@ -1369,9 +1506,14 @@ function restoreAfterPrint() {
 }
 exportBtn.addEventListener("click", e => {
   e.preventDefault();
-  preparePrint();
-  window.print();
-  setTimeout(restoreAfterPrint, 300);
+  const go = () => { preparePrint(); window.print(); setTimeout(restoreAfterPrint, 300); };
+  let firstTime = false;
+  try {
+    firstTime = !localStorage.getItem("plainresume_pdf_hint");
+    if (firstTime) localStorage.setItem("plainresume_pdf_hint", "1");
+  } catch (err) {}
+  if (firstTime) { toast('In the print dialog, choose "Save as PDF" as the destination'); setTimeout(go, 1100); }
+  else go();
 });
 document.getElementById("sample").addEventListener("change", e => {
   const s = SAMPLES[e.target.value];
@@ -1380,7 +1522,7 @@ document.getElementById("sample").addEventListener("change", e => {
   syncCustomSelect(e.target);
 });
 
-enhanceSelect(tplSel);
+enhanceSelect(tplSel, { thumbnails: true });
 enhanceSelect(fontSel, { mirrorFont: true });
 enhanceSelect(document.getElementById("sample"));
 
@@ -1473,8 +1615,8 @@ RTU Interface Lab | Portland, OR
 - Ran usability sessions with 18 students and converted feedback into clearer keyboard states and empty screens
 
 PROJECTS
-Onepage Resume Builder | Jan 2026 - Present
-https://projects.example/onepage
+PlainResume Builder | Jan 2026 - Present
+https://projects.example/plainresume
 - Built a zero-backend parser in vanilla HTML, CSS, and JavaScript with live preview, print export, share links, and local autosave
 
 TECHNICAL SKILLS
@@ -1522,25 +1664,38 @@ const SAMPLE = SAMPLES.clean;
 
 /* ---------- boot ---------- */
 function init() {
-  const hash = location.hash.length > 1 ? dec(location.hash.slice(1)) : null;
-  let zoom = 1, editFont = 15, editWidth = 44;
+  /* one-time migration from the old "onepage_*" storage keys */
   try {
-    zoom = Number(localStorage.getItem("onepage_zoom")) || zoom;
-    editFont = Number(localStorage.getItem("onepage_editor_font")) || editFont;
-    editWidth = Number(localStorage.getItem("onepage_editor_w")) || editWidth;
+    if (localStorage.getItem("plainresume_text") === null && localStorage.getItem("onepage_text") !== null) {
+      ["text", "tpl", "accent", "font", "zoom", "editor_font", "editor_w"].forEach(k => {
+        const v = localStorage.getItem("onepage_" + k);
+        if (v !== null) localStorage.setItem("plainresume_" + k, v);
+      });
+    }
   } catch (e) {}
-  if (hash && typeof hash.t === "string") {
+  /* size caps so a crafted share link can't freeze the tab */
+  const rawHash = location.hash.length > 1 && location.hash.length < 200000 ? location.hash.slice(1) : "";
+  const hash = rawHash ? dec(rawHash) : null;
+  let zoom = 1, editFont = 15, editWidth = 44, theme = "dark";
+  try {
+    theme = localStorage.getItem("plainresume_theme") || theme;
+    zoom = Number(localStorage.getItem("plainresume_zoom")) || zoom;
+    editFont = Number(localStorage.getItem("plainresume_editor_font")) || editFont;
+    editWidth = Number(localStorage.getItem("plainresume_editor_w")) || editWidth;
+  } catch (e) {}
+  if (hash && typeof hash.t === "string" && hash.t.length <= 100000) {
     src.value = hash.t;
     setTemplate(hash.tpl || "modern");
     setAccent(hash.ac || ACCENTS[0]);
     setFont(hash.font || "");
   } else {
-    let saved = ""; try { saved = localStorage.getItem("onepage_text") || ""; } catch (e) {}
+    let saved = ""; try { saved = localStorage.getItem("plainresume_text") || ""; } catch (e) {}
     src.value = saved || SAMPLE;
     let tpl = "modern", ac = ACCENTS[0], font = "";
-    try { tpl = localStorage.getItem("onepage_tpl") || tpl; ac = localStorage.getItem("onepage_accent") || ac; font = localStorage.getItem("onepage_font") || ""; } catch (e) {}
+    try { tpl = localStorage.getItem("plainresume_tpl") || tpl; ac = localStorage.getItem("plainresume_accent") || ac; font = localStorage.getItem("plainresume_font") || ""; } catch (e) {}
     setTemplate(tpl); setAccent(ac); setFont(font);
   }
+  setTheme(theme, false);
   setEditorWidthPercent(editWidth, false);
   setEditorFontSize(editFont, false);
   setResumeZoom(zoom, false);
